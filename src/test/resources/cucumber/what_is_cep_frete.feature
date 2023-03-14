@@ -8,6 +8,6 @@ Feature: What is the fare for this CEP?
 
   Examples:
     | cep            | fare   |
-    | 01001000       | 7.85f  |
+    | 01001000       | 7.85   |
     
     

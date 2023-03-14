@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.cep.CepDemo.dto.request.CepRequest;
 import com.cep.CepDemo.dto.response.CepResponse;
+import com.cep.CepDemo.util.Fare;
 
 @SpringBootTest
 public class CepControllerTests {
@@ -27,18 +28,14 @@ public class CepControllerTests {
     private CepRequest invalidCep_Malformed = new CepRequest("98469-7777");
     private CepRequest invalidCep_NonExistent = new CepRequest("01001002");
 
-    float freteNorte = 20.83f;
-    float freteNordeste = 15.98f;
-    float freteCentroOeste = 12.50f;
-    float freteSul = 17.30f;
-    float freteSudeste = 7.85f;
+
 
     @Test
     public void test_getValidSoutheastCepWithNoLine() throws ClientProtocolException, IOException {
         System.out.println("TESTE: OBTENÇÃO DE DADOS COM CEP VALIDO. CEP ESCRITO SEM MASCARA.");
         ResponseEntity<Object> response = cepController.findCepData(validCep_noLine);
         CepResponse responseBody = (CepResponse) response.getBody();
-        assertEquals(freteSudeste, responseBody.getFrete());
+        assertEquals(Fare.freteSudeste, responseBody.getFrete());
     }
 
     @Test
@@ -46,7 +43,7 @@ public class CepControllerTests {
         System.out.println("TESTE: OBTENÇÃO DE DADOS COM CEP VALIDO. CEP ESCRITO COM MASCARA.");
         ResponseEntity<Object> response = cepController.findCepData(validCep_Line);
         CepResponse responseBody = (CepResponse) response.getBody();
-        assertEquals(freteNorte, responseBody.getFrete());
+        assertEquals(Fare.freteNorte, responseBody.getFrete());
     }
 
     @Test
@@ -54,7 +51,7 @@ public class CepControllerTests {
         System.out.println("TESTE: OBTENÇÃO DE DADOS COM CEP VALIDO. CEP ESCRITO COM MASCARA.");
         ResponseEntity<Object> response = cepController.findCepData(validCep_Line_South);
         CepResponse responseBody = (CepResponse) response.getBody();
-        assertEquals(freteSul, responseBody.getFrete());
+        assertEquals(Fare.freteSul, responseBody.getFrete());
     }
 
     @Test
