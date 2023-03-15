@@ -36,15 +36,15 @@ public class CepControllerTests {
 
     @Test
     public void test_getValidSoutheastCepWithNoLine() throws ClientProtocolException, IOException {
-        System.out.println("TESTE: OBTENÇÃO DE DADOS COM CEP VALIDO. CEP ESCRITO SEM MASCARA.");
+        System.out.println("TESTE: OBTENÇÃO DE DADOS COM CEP DO SUDESTE VALIDO. CEP ESCRITO SEM MASCARA.");
         ResponseEntity<Object> response = cepController.findCepData(validCep_noLine);
         CepResponse responseBody = (CepResponse) response.getBody();
-        assertEquals(Fare.freteSudeste, responseBody.getFrete());
+        assertEquals(Fare.freteSudeste, responseBody.getFrete());        
     }
 
     @Test
     public void test_getValidNorthCepWithLine() throws ClientProtocolException, IOException {
-        System.out.println("TESTE: OBTENÇÃO DE DADOS COM CEP VALIDO. CEP ESCRITO COM MASCARA.");
+        System.out.println("TESTE: OBTENÇÃO DE DADOS COM CEP DO NORTE VALIDO. CEP ESCRITO COM MASCARA.");
         ResponseEntity<Object> response = cepController.findCepData(validCep_Line);
         CepResponse responseBody = (CepResponse) response.getBody();
         assertEquals(Fare.freteNorte, responseBody.getFrete());
@@ -52,7 +52,7 @@ public class CepControllerTests {
 
     @Test
     public void test_getValidSouthCepWithLine() throws ClientProtocolException, IOException {
-        System.out.println("TESTE: OBTENÇÃO DE DADOS COM CEP VALIDO. CEP ESCRITO COM MASCARA.");
+        System.out.println("TESTE: OBTENÇÃO DE DADOS COM CEP DO SUL VALIDO. CEP ESCRITO COM MASCARA.");
         ResponseEntity<Object> response = cepController.findCepData(validCep_Line_South);
         CepResponse responseBody = (CepResponse) response.getBody();
         assertEquals(Fare.freteSul, responseBody.getFrete());
