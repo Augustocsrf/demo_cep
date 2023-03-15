@@ -36,8 +36,6 @@ public class CepService {
 
         httpClient.close();
 
-        System.out.println(responseJson);
-
         // Verificar o status da resposta
         // Caso o código consiga com "OK" (200), prosseguir normalmente, se não,
         // criar um objeto de erro para esse caso e lançar um erro esperado

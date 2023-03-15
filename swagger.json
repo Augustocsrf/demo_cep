@@ -1,0 +1,138 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API de Demonstração de obtenção de CEP.",
+        "version": "0.0.x",
+        "title": "API CEP"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "API de CEP",
+            "description": "Obtem fretes e dados baseados em CEP."
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/v1/consulta-endereco": {
+            "post": {
+                "tags": [
+                    "API de CEP"
+                ],
+                "summary": "Encontre o frete e dados para um CEP informado",
+                "operationId": "findCepDataUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "cepRequest",
+                        "description": "cepRequest",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CepRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK\nCEP foi encontrado com sucesso e dados foram retornados",
+                        "schema": {
+                            "$ref": "#/definitions/CepResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request\nCEP enviado para busca não estava em formato válido ou não foi informado",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found\nCEP informado não foi encontrado no sistema",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    },
+    "definitions": {
+        "CepRequest": {
+            "type": "object",
+            "required": [
+                "cep"
+            ],
+            "properties": {
+                "cep": {
+                    "type": "string",
+                    "example": "01001000",
+                    "description": "CEP a ser buscado."
+                }
+            },
+            "title": "CepRequest"
+        },
+        "CepResponse": {
+            "type": "object",
+            "required": [
+                "bairro",
+                "cep",
+                "cidade",
+                "complemento",
+                "estado",
+                "frete",
+                "rua"
+            ],
+            "properties": {
+                "bairro": {
+                    "type": "string",
+                    "description": "Bairro do CEP buscado."
+                },
+                "cep": {
+                    "type": "string",
+                    "example": "01001000",
+                    "description": "CEP encontrado na busca."
+                },
+                "cidade": {
+                    "type": "string",
+                    "description": "Cidade do CEP buscado."
+                },
+                "complemento": {
+                    "type": "string",
+                    "description": "Complemento do CEP buscado."
+                },
+                "estado": {
+                    "type": "string",
+                    "description": "Estado do CEP buscado."
+                },
+                "frete": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Frete para entregas na Região do CEP buscado."
+                },
+                "rua": {
+                    "type": "string",
+                    "description": "Rua do CEP buscado."
+                }
+            },
+            "title": "CepResponse"
+        }
+    }
+}

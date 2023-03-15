@@ -1,5 +1,6 @@
 package com.cep.CepDemo.dto.response;
 
+import com.cep.CepDemo.util.Fare;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -39,12 +40,6 @@ public class CepResponse {
     }
 
     private void setFrete() {
-        float freteNorte = 20.83f;
-        float freteNordeste = 15.98f;
-        float freteCentroOeste = 12.50f;
-        float freteSul = 17.30f;
-        float freteSudeste = 7.85f;
-
         switch (this.getEstado()) {
             // Estados do norte
             case "AC":
@@ -54,7 +49,7 @@ public class CepResponse {
             case "RO":
             case "RR":
             case "TO":
-                this.frete = freteNorte;
+                this.frete = Fare.freteNorte;
                 break;
 
             // Estados do Nordeste
@@ -67,7 +62,7 @@ public class CepResponse {
             case "AL":
             case "SE":
             case "BA":
-                this.frete = freteNordeste;
+                this.frete =  Fare.freteNordeste;
                 break;
 
             // Estados do Centro-Oeste
@@ -75,19 +70,19 @@ public class CepResponse {
             case "MT":
             case "MS":
             case "DF":
-                this.frete = freteCentroOeste;
+                this.frete =  Fare.freteCentroOeste;
                 break;
 
             // Estados do Sul
             case "PR":
             case "SC":
             case "RS":
-                this.frete = freteSul;
+                this.frete =  Fare.freteSul;
                 break;
 
             // Estados do Sudeste
             default:
-                this.frete = freteSudeste;
+                this.frete =  Fare.freteSudeste;
                 break;
         }
     }

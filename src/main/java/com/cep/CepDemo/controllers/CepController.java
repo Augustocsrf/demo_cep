@@ -3,7 +3,6 @@ package com.cep.CepDemo.controllers;
 import java.io.IOException;
 
 import org.apache.http.client.ClientProtocolException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,8 +27,7 @@ import io.swagger.annotations.ApiResponses;
 @RestController
 @RequestMapping("/v1")
 public class CepController {
-    @Autowired
-    private CepService cepService;
+    private CepService cepService = new CepService();
 
     @ApiOperation("Encontre o frete e dados para um CEP informado")
     @ApiResponses({
